@@ -1,6 +1,6 @@
 require 'rack'
 require 'pry-debugger'
-equire 'twitter'
+require 'twitter'
 require './configure'
 require 'thin'
 
@@ -13,15 +13,16 @@ class HelloWorld
     res['Content-Type'] = 'text/html'
     #Si no esta vacio , no es un espacio y el usuario existe en Twitter el nombre es el introducido, si no se introduce unline91
     name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) == true) ? req["firstname"] :'unline91'
+    ultimotweet = Twitter.user_timeline(name).first
+    puts"#{ultimotweet.text}"
     res.write <<-"EOS"
       <!DOCTYPE HTML>
       <html>
         <title>Rack::Response</title>
         <body>
           <h1>
-             Hello #{name}!
              <form action="/" method="post">
-               Your name: <input type="text" name="firstname" autofocus><br>
+               Nombre del usuario de twitter: <input type="text" name="firstname" autofocus><br>
                <input type="submit" value="Submit">
              </form>
           </h1>
