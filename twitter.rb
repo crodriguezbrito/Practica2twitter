@@ -1,5 +1,8 @@
 require 'rack'
 require 'pry-debugger'
+equire 'twitter'
+require './configure'
+require 'thin'
 
 class HelloWorld
 
@@ -8,7 +11,8 @@ class HelloWorld
     res = Rack::Response.new 
     binding.pry if ARGV[0]
     res['Content-Type'] = 'text/html'
-    name = (req["firstname"] && req["firstname"] != '') ? req["firstname"] :'World'
+    #Si no esta vacio , no es un espacio y el usuario existe en Twitter el nombre es el introducido, si no se introduce unline91
+    name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) == true) ? req["firstname"] :'unline91'
     res.write <<-"EOS"
       <!DOCTYPE HTML>
       <html>
