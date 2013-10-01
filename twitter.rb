@@ -5,7 +5,10 @@ require './configure'
 require 'thin'
 
 class HelloWorld
-
+  def initialize
+		name = ''
+		tweet= ''
+  end
   def call env
     req = Rack::Request.new(env)
     res = Rack::Response.new 
@@ -29,6 +32,9 @@ class HelloWorld
                Nombre del usuario de twitter: <input type="text" name="firstname" autofocus><br>
                <input type="submit" value="Submit">
              </form>
+          </h1>
+          <h1>
+			USUARIO: #{name}
           </h1>
             <h2>
 				Tweet
