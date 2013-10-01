@@ -7,7 +7,7 @@ require 'thin'
 class HelloWorld
   def initialize
 		name = ''
-		tweet= ''
+		tweet = ''
   end
   def call env
     req = Rack::Request.new(env)
@@ -16,8 +16,10 @@ class HelloWorld
     res['Content-Type'] = 'text/html'
     #Si no esta vacio , no es un espacio y el usuario existe en Twitter el nombre es el introducido
     name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) == true) ? req["firstname"] :''
+    if (name = req["firstname"])
     ultimotweet = Twitter.user_timeline(name).first
     tweet = ultimotweet.text
+    end
     
     res.write <<-"EOS"
       <!DOCTYPE HTML>
