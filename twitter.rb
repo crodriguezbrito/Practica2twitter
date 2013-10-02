@@ -11,8 +11,8 @@ class HelloWorld
     binding.pry if ARGV[0]
     res['Content-Type'] = 'text/html'
 
-    name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) == true) ? req["firstname"] :''
-    if (name = req["firstname"])
+    name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) )? req["firstname"] :''
+    if (name == req["firstname"])
 		ultimotweet = Twitter.user_timeline(name).first
 		tweet = ultimotweet.text
     end
@@ -31,13 +31,15 @@ class HelloWorld
                <input type="submit" value="Submit">
              </form>
           </h1>
-          <h1>
+          <h3>
 			USUARIO: #{name}
-          </h1>
-            <h2>
-				Tweet
-			    <p>#{tweet}</p>
-            </h2>                 
+		  </h3>
+			<br>
+		  <h3>	
+			Tweet : <p>#{tweet}</p>
+			    
+		   </h3>    
+                            
         </body>
       </html>
     EOS
