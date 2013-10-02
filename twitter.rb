@@ -31,13 +31,15 @@ class HelloWorld
                <input type="submit" value="Submit">
              </form>
           </h1>
-          <h1>
+          <h3>
 			USUARIO: #{name}
-          </h1>
-            <h2>
-				Tweet
-			    <p>#{tweet}</p>
-            </h2>                 
+		  </h3>
+			<br>
+		  <h3>	
+			Tweet : <p>#{tweet}</p>
+			    
+		   </h3>    
+                            
         </body>
       </html>
     EOS
