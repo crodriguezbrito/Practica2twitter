@@ -11,7 +11,7 @@ class HelloWorld
     binding.pry if ARGV[0]
     res['Content-Type'] = 'text/html'
 
-    name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) == true) ? req["firstname"] :''
+    name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) )? req["firstname"] :''
     if (name = req["firstname"])
 		ultimotweet = Twitter.user_timeline(name).first
 		tweet = ultimotweet.text
