@@ -12,7 +12,7 @@ class HelloWorld
     res['Content-Type'] = 'text/html'
 
     name = (req["firstname"] && req["firstname"] != ''&& Twitter.user?(req["firstname"]) )? req["firstname"] :''
-    if (name = req["firstname"])
+    if (name == req["firstname"])
 		ultimotweet = Twitter.user_timeline(name).first
 		tweet = ultimotweet.text
     end
